@@ -1,7 +1,6 @@
 import React from "react"
 import ObjectField from "react-jsonschema-form/lib/components/fields/ObjectField"
 import { retrieveSchema } from "react-jsonschema-form/lib/utils"
-import { Col } from "react-bootstrap"
 
 export default class GridField extends ObjectField {
   state = { firstName: "hasldf" }
@@ -29,9 +28,9 @@ export default class GridField extends ObjectField {
       let style = {}
       if (hide) style = { display: "none" }
       return (
-        <Col {...itemProps} style={style}>
+        <div {...itemProps} style={style}>
           {children}
-        </Col>
+        </div>
       )
     }
 
