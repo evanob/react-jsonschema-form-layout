@@ -90,7 +90,7 @@ export default class GridField extends ObjectField {
                   }
 
                   return (
-                    <ItemElement key={index} itemProps={itemProps} hide={hide}>
+                    <ItemElement key={rowIndex} itemProps={itemProps} hide={hide}>
                       <UIComponent
                         name={name}
                         formData={formData}
