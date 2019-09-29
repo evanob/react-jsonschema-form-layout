@@ -133,6 +133,9 @@ var GridField = function (_ObjectField) {
                   itemProps = _objectWithoutProperties(_row$name, ["doShow"]);
 
               var hide = doShow && !doShow({ formData: formData });
+
+              console.log(schema.properties);
+
               if (schema.properties[name]) {
                 return _react2.default.createElement(
                   ItemElement,

@@ -62,6 +62,9 @@ export default class GridField extends ObjectField {
               {Object.keys(row).map((name, itemIndex) => {
                 const { doShow, ...itemProps } = row[name]
                 const hide = doShow && !doShow({ formData })
+
+                console.log(schema.properties)
+
                 if (schema.properties[name]) {
                   return (
                     <ItemElement key={[rowIndex, itemIndex]} itemProps={itemProps} hide={hide}>
