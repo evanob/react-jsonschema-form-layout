@@ -3,7 +3,8 @@ import ObjectField from "react-jsonschema-form/lib/components/fields/ObjectField
 import { retrieveSchema } from "react-jsonschema-form/lib/utils"
 
 export default class GridField extends ObjectField {
-  state = { firstName: "hasldf" }
+  state = {}
+
   render() {
     const {
       uiSchema,
@@ -35,9 +36,9 @@ export default class GridField extends ObjectField {
     }
 
     const { layoutOptions: options } = formContext
-    if (options && options.wrapper) LayoutWrapper = options.wrapper
-    if (options && options.rowElement) RowElement = options.rowElement
-    if (options && options.itemElement) ItemElement = options.itemElement
+    if (options && options.LayoutWrapper) LayoutWrapper = options.LayoutWrapper
+    if (options && options.RowElement) RowElement = options.RowElement
+    if (options && options.ItemElement) ItemElement = options.ItemElement
 
     return (
       <LayoutWrapper>
@@ -63,15 +64,18 @@ export default class GridField extends ObjectField {
                 const { doShow, ...itemProps } = row[name]
                 const hide = doShow && !doShow({ formData })
 
-                console.log(schema.properties)
-
-                if (schema.properties[name]) {
+                const props = schema.properties[name]
+                if (props) {
                   return (
-                    <ItemElement key={[rowIndex, itemIndex]} itemProps={itemProps} hide={hide}>
+                    <ItemElement
+                      key={[rowIndex, itemIndex].join("/")}
+                      itemProps={itemProps}
+                      hide={hide}
+                    >
                       <SchemaField
                         name={name}
                         required={this.isRequired(name)}
-                        schema={schema.properties[name]}
+                        schema={props}
                         uiSchema={uiSchema[name]}
                         errorSchema={errorSchema[name]}
                         idSchema={idSchema[name]}
