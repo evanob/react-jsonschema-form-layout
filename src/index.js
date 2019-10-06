@@ -24,8 +24,8 @@ export default class GridField extends ObjectField {
     const layout = uiSchema["ui:layout"]
 
     let LayoutWrapper = ({ children }) => <fieldset>{children}</fieldset>
-    let RowElement = ({ children }) => <div className="row">{children}</div>
-    let ItemElement = ({ children, itemProps, hide }) => {
+    let RowLayout = ({ children }) => <div className="row">{children}</div>
+    let ItemLayout = ({ children, itemProps, hide }) => {
       let style = {}
       if (hide) style = { display: "none" }
       return (
@@ -37,8 +37,8 @@ export default class GridField extends ObjectField {
 
     const { layoutOptions: options } = formContext
     if (options && options.LayoutWrapper) LayoutWrapper = options.LayoutWrapper
-    if (options && options.RowElement) RowElement = options.RowElement
-    if (options && options.ItemElement) ItemElement = options.ItemElement
+    if (options && options.RowLayout) RowLayout = options.RowLayout
+    if (options && options.ItemLayout) ItemLayout = options.ItemLayout
 
     return (
       <LayoutWrapper>
@@ -59,7 +59,7 @@ export default class GridField extends ObjectField {
         ) : null}
         {layout.map((row, rowIndex) => {
           return (
-            <RowElement key={rowIndex}>
+            <RowLayout key={rowIndex}>
               {Object.keys(row).map((name, itemIndex) => {
                 const { doShow, ...itemProps } = row[name]
                 const hide = doShow && !doShow({ formData })
@@ -67,7 +67,7 @@ export default class GridField extends ObjectField {
                 const props = schema.properties[name]
                 if (props) {
                   return (
-                    <ItemElement
+                    <ItemLayout
                       key={[rowIndex, itemIndex].join("/")}
                       itemProps={itemProps}
                       hide={hide}
@@ -86,7 +86,7 @@ export default class GridField extends ObjectField {
                         disabled={disabled}
                         readonly={readonly}
                       />
-                    </ItemElement>
+                    </ItemLayout>
                   )
                 } else {
                   const { render, ...itemProps } = row[name]
@@ -97,7 +97,7 @@ export default class GridField extends ObjectField {
                   }
 
                   return (
-                    <ItemElement key={rowIndex} itemProps={itemProps} hide={hide}>
+                    <ItemLayout key={rowIndex} itemProps={itemProps} hide={hide}>
                       <UIComponent
                         name={name}
                         formData={formData}
@@ -106,11 +106,11 @@ export default class GridField extends ObjectField {
                         schema={schema}
                         registry={this.props.registry}
                       />
-                    </ItemElement>
+                    </ItemLayout>
                   )
                 }
               })}
-            </RowElement>
+            </RowLayout>
           )
         })}
       </LayoutWrapper>

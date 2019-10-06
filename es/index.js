@@ -81,7 +81,7 @@ var GridField = function (_ObjectField) {
           children
         );
       };
-      var RowElement = function RowElement(_ref3) {
+      var RowLayout = function RowLayout(_ref3) {
         var children = _ref3.children;
         return _react2.default.createElement(
           "div",
@@ -89,7 +89,7 @@ var GridField = function (_ObjectField) {
           children
         );
       };
-      var ItemElement = function ItemElement(_ref4) {
+      var ItemLayout = function ItemLayout(_ref4) {
         var children = _ref4.children,
             itemProps = _ref4.itemProps,
             hide = _ref4.hide;
@@ -106,8 +106,8 @@ var GridField = function (_ObjectField) {
       var options = formContext.layoutOptions;
 
       if (options && options.LayoutWrapper) LayoutWrapper = options.LayoutWrapper;
-      if (options && options.RowElement) RowElement = options.RowElement;
-      if (options && options.ItemElement) ItemElement = options.ItemElement;
+      if (options && options.RowLayout) RowLayout = options.RowLayout;
+      if (options && options.ItemLayout) ItemLayout = options.ItemLayout;
 
       return _react2.default.createElement(
         LayoutWrapper,
@@ -125,7 +125,7 @@ var GridField = function (_ObjectField) {
         }) : null,
         layout.map(function (row, rowIndex) {
           return _react2.default.createElement(
-            RowElement,
+            RowLayout,
             { key: rowIndex },
             Object.keys(row).map(function (name, itemIndex) {
               var _row$name = row[name],
@@ -137,7 +137,7 @@ var GridField = function (_ObjectField) {
               var props = schema.properties[name];
               if (props) {
                 return _react2.default.createElement(
-                  ItemElement,
+                  ItemLayout,
                   {
                     key: [rowIndex, itemIndex].join("/"),
                     itemProps: itemProps,
@@ -172,7 +172,7 @@ var GridField = function (_ObjectField) {
                 }
 
                 return _react2.default.createElement(
-                  ItemElement,
+                  ItemLayout,
                   { key: rowIndex, itemProps: _itemProps, hide: hide },
                   _react2.default.createElement(UIComponent, {
                     name: name,
