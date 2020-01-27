@@ -15,6 +15,7 @@
     "build": "nwb build-react-component",
     "clean": "nwb clean-module && npm clean-demo",
     "start": "nwb serve-react-demo",
+    "watch": "nodemon -w src -x 'nwb build-react-component --no-demo'",
     "test": "jest --coverage",
     "test:coverage": "jest --coverage",
     "test:watch": "nwb test-react --server",
@@ -23,11 +24,11 @@
   "dependencies": {
     "codecov.io": "^0.1.6",
     "coveralls": "^2.11.16",
-    "react-bootstrap": " 0.30.7",
-    "react-jsonschema-form": "0.43.0"
+    "react-jsonschema-form": "1.8.0"
   },
   "peerDependencies": {
-    "react": "15.x"
+    "react": ">= 16",
+    "react-bootstrap": " 0.30.7"
   },
   "devDependencies": {
     "babel-eslint": "7.1.1",
@@ -38,17 +39,18 @@
     "eslint": "3.16.1",
     "eslint-plugin-react": "6.10.0",
     "jest": "19.0.2",
+    "nodemon": "^1.19.3",
     "nwb": "0.15.x",
     "nwb-less": " 0.5.1",
-    "react": "15.4.2",
-    "react-dom": "15.4.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "react-dropzone": " 3.11.0",
     "react-test-renderer": " 15.4.2"
   },
   "author": "Mario Scheliga <marsch.js@gmail.com>",
   "homepage": "",
   "license": "MIT",
-  "repository": "https://github.com/audibene-labs/react-jsonschema-form-layout",
+  "repository": "https://github.com/evanob/react-jsonschema-form-layout",
   "keywords": [
     "react-component"
   ],
